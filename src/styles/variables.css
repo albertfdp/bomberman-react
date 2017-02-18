@@ -1,0 +1,17 @@
+:root {
+  --color-cape-cod: #494b4a;
+  --color-donkey-brown: #a39480;
+  --color-golden-dream: #ebc72b;
+  --color-heather: #acc0c9;
+  --color-iron: #d7d8db;
+  --color-sapling: #ddc89e;
+  --color-tan: #c8a67d;
+  --color-tuna: #36373a;
+  --color-white: #fdfdfd;
+
+  --color-red: rgb(255, 70, 0);
+  --color-blue: rgb(3, 0, 250);
+  --color-yellow: rgb(250, 200, 100);
+  --color-gray: rgb(167, 167, 167);
+  --color-green: rgb(67, 124, 67);
+}

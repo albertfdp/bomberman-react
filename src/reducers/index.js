@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux'
-
-const app = (initialState = {}, action) => {
-  return initialState
-}
+import players from './players'
+import welcome from './welcome'
 
 export default combineReducers({
-  app
+  players,
+  welcome
 })
