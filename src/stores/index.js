@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore, compose } from 'redux'
 import thunk from 'redux-thunk'
 import reducers from '../reducers'
-import DevTools from 'components/DevTools'
+import { DevTools } from 'components/DevTools'
 
 const enhancer = __PRODUCTION__
   ? compose(applyMiddleware(thunk))

@@ -1,12 +1,16 @@
 import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Welcome, View } from 'components'
 
 import styles from './styles.css'
 
 const App = () => (
-  <div className={styles.container}>
-    <h1>An opinionated boilerplate</h1>
-    <p>...and offline ready!</p>
-  </div>
+  <View className={styles.container}>
+    <h3>hello</h3>
+    <Router>
+      <Route exact path='/' component={Welcome} />
+    </Router>
+  </View>
 )
 
 export default App

@@ -1,10 +1,12 @@
 import React from 'react'
+import { View } from 'components'
+
 import { createDevTools } from 'redux-devtools'
 
 import LogMonitor from 'redux-devtools-log-monitor'
 import DockMonitor from 'redux-devtools-dock-monitor'
 
-const DevTools = createDevTools(
+export const DevTools = createDevTools(
   <DockMonitor
     toggleVisibilityKey='ctrl-h'
     changePositionKey='ctrl-q'
@@ -13,4 +15,11 @@ const DevTools = createDevTools(
   </DockMonitor>
 )
 
-export default DevTools
+const Wrapper = ({ children }) => (
+  <View>
+    { children }
+    <DevTools />
+  </View>
+)
+
+export default Wrapper

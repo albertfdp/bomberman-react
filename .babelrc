@@ -16,7 +16,8 @@
       }
     }],
     "transform-class-properties",
-    "transform-export-extensions"
+    "transform-export-extensions",
+    "transform-object-rest-spread"
   ],
   "env": {
     "production": {
@@ -44,7 +45,8 @@
           }
         }],
         "transform-class-properties",
-        "transform-export-extensions"
+        "transform-export-extensions",
+        "transform-object-rest-spread"
       ],
     }
   }
