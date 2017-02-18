@@ -1,0 +1,51 @@
+{
+  "presets": [
+    [ "env", {
+      "targets": {
+        "chrome": 52
+      },
+      "modules": false
+    }],
+    "react"
+  ],
+  "plugins": [
+    [ "module-resolver", {
+      "root": [ "./src" ],
+      "alias": {
+        "test": "./test"
+      }
+    }],
+    "transform-class-properties",
+    "transform-export-extensions"
+  ],
+  "env": {
+    "production": {
+      "presets": [
+        [ "env", {
+          "targets": {
+            "browsers": "last 2 versions"
+          },
+          "modules": false,
+          "useBuiltIns": true
+        }],
+        "react"
+      ]
+    },
+    "test": {
+      "presets": [
+        "env",
+        "react"
+      ],
+      "plugins": [
+        [ "module-resolver", {
+          "root": [ "./src" ],
+          "alias": {
+            "test": "./test"
+          }
+        }],
+        "transform-class-properties",
+        "transform-export-extensions"
+      ],
+    }
+  }
+}

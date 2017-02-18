@@ -1,0 +1,11 @@
+exports[`App renders 1`] = `
+<div
+  className="container">
+  <h1>
+    An opinionated boilerplate
+  </h1>
+  <p>
+    ...and offline ready!
+  </p>
+</div>
+`;
