@@ -1,9 +1,19 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import { App } from 'components'
+import { Provider } from 'react-redux'
+import { App, DevTools } from 'components'
 import 'styles/index.css'
+
+import store from 'stores'
 
 import 'utils/offlinePlugin'
 
-render(<App />, document.querySelector('.app'))
+render(
+  <Provider store={store}>
+    <DevTools>
+      <App />
+    </DevTools>
+  </Provider>,
+  document.querySelector('.app')
+)
