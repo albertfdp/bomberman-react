@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router-dom'
 import { PauseMenu, Scoreboard, Text, View } from 'components'
 import keycodes from 'keycodes'
 
@@ -35,12 +36,11 @@ class Game extends Component {
   }
 
   onKeyDown = (e) => {
-    const { gameActions } = this.props
+    const { gameActions, push } = this.props
 
     switch (e.keyCode) {
       case keycodes('esc'):
-        this.setState(prevState => ({ paused: !prevState.paused }))
-        break
+        return push('/')
       case keycodes('up'):
         return gameActions.moveUp()
       case keycodes('down'):
@@ -107,4 +107,4 @@ const mapDispatchToProps = dispatch => ({
   gameActions: bindActionCreators(GameActions, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Game))

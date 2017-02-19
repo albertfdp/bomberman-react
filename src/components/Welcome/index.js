@@ -8,7 +8,7 @@ import { playerSelectors } from 'selectors'
 
 import * as GameActions from 'actions/GameActions'
 import PlayerSelector from './PlayerSelector'
-import { View } from 'components'
+import { Text, View } from 'components'
 
 import styles from './styles.css'
 
@@ -79,6 +79,16 @@ class Welcome extends Component {
         <View className={styles.content}>
           <View className={styles.selector}>
             {players.map(this.renderPlayer)}
+          </View>
+        </View>
+        <View className={styles.help}>
+          <View>
+            <Text className={styles.key}>C</Text>
+            <Text>&nbsp;to change character</Text>
+          </View>
+          <View>
+            <Text className={styles.key}>ENTER</Text>
+            <Text>&nbsp;to start</Text>
           </View>
         </View>
       </View>
