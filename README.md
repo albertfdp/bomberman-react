@@ -6,7 +6,7 @@ A poor-man implementation of the classic Bomberman in React. Just for fun. The g
 
 ### Last build
 
-[Demo](http://bomberman.netlify.com)
+[Demo](https://bomberman.netlify.com)
 
-![](http://bomberman.netlify.com/assets/Screen%20Shot%202017-02-19%20at%2019.14.12.png)
-![](http://bomberman.netlify.com/assets/Screen%20Shot%202017-02-19%20at%2019.14.21.png)
+![](https://bomberman.netlify.com/assets/Screen%20Shot%202017-02-19%20at%2019.14.12.png)
+![](https://bomberman.netlify.com/assets/Screen%20Shot%202017-02-19%20at%2019.14.21.png)
