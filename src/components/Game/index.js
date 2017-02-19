@@ -6,7 +6,7 @@ import styles from './styles.css'
 class Game extends Component {
   render () {
     return (
-      <View>
+      <View className={styles.container}>
         This is the Game container component
       </View>
     )

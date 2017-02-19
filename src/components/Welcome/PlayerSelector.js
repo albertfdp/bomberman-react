@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import classnames from 'classnames'
 import { View, Text } from 'components'
 
@@ -16,4 +17,8 @@ const PlayerSelector = ({ player }) => (
   </View>
 )
 
-export default PlayerSelector
+const mapStateToProps = ({ players }, { id }) => ({
+  player: players.find(player => player.id === id)
+})
+
+export default connect(mapStateToProps)(PlayerSelector)

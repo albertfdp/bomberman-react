@@ -51,6 +51,7 @@
     "redux-devtools-dock-monitor": "1.1.1",
     "redux-devtools-log-monitor": "1.2.0",
     "redux-thunk": "2.2.0",
+    "reselect": "2.5.4",
     "standard": "8.6.0",
     "standard-loader": "5.0.0",
     "style-loader": "0.13.1",

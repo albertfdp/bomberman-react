@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import keycode from 'keycodes'
 import { withRouter } from 'react-router-dom'
+import { playerSelectors } from 'selectors'
 
 import * as GameActions from 'actions/GameActions'
 import PlayerSelector from './PlayerSelector'
@@ -38,15 +39,15 @@ class Welcome extends Component {
 
   renderPlayer = (player) => {
     const { selected } = this.props
-    const isSelected = selected === player.id
+    const isSelected = selected === player
 
     return (
       <View
-        key={player.id}
+        key={player}
         className={classnames(styles.row, { [styles.selected]: isSelected })}
       >
         <Arrow hasArrow={isSelected} />
-        <PlayerSelector player={player} />
+        <PlayerSelector id={player} />
       </View>
     )
   }
@@ -87,9 +88,16 @@ class Welcome extends Component {
   }
 }
 
-const mapStateToProps = ({ players, welcome }) => {
-  return { players, selected: welcome.selected }
+const mapStateToProps = (state) => {
+  const { welcome: { selected } } = state
+  const { ids } = playerSelectors(state)
+
+  return {
+    selected,
+    players: ids
+  }
 }
+
 const mapDispatchToProps = dispatch => ({
   gameActions: bindActionCreators(GameActions, dispatch)
 })
