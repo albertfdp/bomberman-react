@@ -8,5 +8,5 @@ A poor-man implementation of the classic Bomberman in React. Just for fun. The g
 
 [Demo](http://bomberman.netlify.com)
 
-![](http://bomberman.netlify.com/Screen%20Shot%202017-02-19%20at%2019.14.12.png)
-![](http://bomberman.netlify.com/Screen%20Shot%202017-02-19%20at%2019.14.21.png)
+![](http://bomberman.netlify.com/assets/Screen%20Shot%202017-02-19%20at%2019.14.12.png)
+![](http://bomberman.netlify.com/assets/Screen%20Shot%202017-02-19%20at%2019.14.21.png)
