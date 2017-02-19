@@ -65,7 +65,7 @@ module.exports = {
       mangle: { screw_ie8: true }
     }),
     new HtmlWebpackPlugin({
-      title: 'An opinionated boilerplate',
+      title: 'Bomberman React',
       template: paths.template
     }),
     new OfflinePlugin({

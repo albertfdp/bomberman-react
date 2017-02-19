@@ -77,7 +77,7 @@ module.exports = {
       }
     }),
     new HtmlWebpackPlugin({
-      title: 'An opinionated boilerplate',
+      title: 'Bomberman React',
       template: paths.template
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),

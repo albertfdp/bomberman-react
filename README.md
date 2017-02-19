@@ -1,12 +1,10 @@
 # bomberman
 
-[![Build Status](https://travis-ci.org/albertfdp/boilerplate.svg?branch=master)](https://travis-ci.org/albertfdp/boilerplate)
+A poor-man implementation of the classic Bomberman in React. Just for fun. The game is offline capable.
 
-A state-of-the-art opinionated & very personal boilerplate. The stack includes:
-  * Webpack 2
-  * React
-  * PostCSS && CSS Modules
-  * Babel preset ENV -transpile just what you need-
-  * Jest && unexpected.js
+### Last build
 
-It's offline capable, so the app works without internet too!
+[Demo](http://producer-ferret-56536.netlify.com)
+
+![](http://58a9e0cc6686743d2e31708b.producer-ferret-56536.netlify.com/Screen%20Shot%202017-02-19%20at%2019.14.12.png)
+![](http://58a9e0cc6686743d2e31708b.producer-ferret-56536.netlify.com/Screen%20Shot%202017-02-19%20at%2019.14.21.png)
