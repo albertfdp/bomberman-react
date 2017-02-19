@@ -19,7 +19,7 @@ export const DevTools = createDevTools(
 const Wrapper = ({ children }) => (
   <View>
     { children }
-    <DevTools />
+    { __PRODUCTION__ ? null : <DevTools /> }
   </View>
 )
 
