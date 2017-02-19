@@ -12,7 +12,7 @@ const players = (state = new List(), action) => {
     case GAME_PLAYER_CHANGE_COLOR:
       return state.update(
         state.findIndex(player => player.id === action.data.id),
-        (player) => player.set('color', action.data.color)
+        (player) => player.set('icon', action.data.icon)
       )
     case GAME_PLAYER_CHANGE_TYPE:
       return state.update(

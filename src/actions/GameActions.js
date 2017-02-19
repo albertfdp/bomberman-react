@@ -1,6 +1,6 @@
 import { List } from 'immutable'
 import { Player } from 'records'
-import randomcolor from 'randomcolor'
+import emojisList from 'emojis-list'
 
 import {
   GAME_START,
@@ -12,16 +12,18 @@ import {
 } from 'constants/actions'
 
 export const init = () => {
+  const emojis = new List(emojisList)
+
   const players = new List([
-    new Player({ id: 0, name: 'Player 1', type: 'man', color: '#fff', icon: '😎' }),
-    new Player({ id: 1, name: 'Player 2', type: 'com', color: '#000', icon: '🤡' }),
-    new Player({ id: 2, name: 'Player 3', type: 'com', color: '#f00', icon: '😡' }),
-    new Player({ id: 3, name: 'Player 4', type: 'com', color: '#00f', icon: '👹' })
+    new Player({ id: 0, name: 'Player 1', type: 'man', icon: '😎' }),
+    new Player({ id: 1, name: 'Player 2', type: 'com', icon: '🤡' }),
+    new Player({ id: 2, name: 'Player 3', type: 'com', icon: '😡' }),
+    new Player({ id: 3, name: 'Player 4', type: 'com', icon: '👹' })
   ])
 
   return {
     type: GAME_INIT,
-    data: { players }
+    data: { players, emojis }
   }
 }
 
@@ -40,14 +42,17 @@ export const startGame = () => (dispatch, getState) => {
 }
 
 export const changeColor = () => (dispatch, getState) => {
-  const { welcome: { selected }, players } = getState()
-  const colors = players.map(player => player.color)
-  let color = randomcolor()
-  while (colors.includes(color)) { color = randomcolor() }
+  const { welcome: { selected }, players, emojis } = getState()
+  const keys = players.map(player => emojis.findKey(emoji => emoji === player.icon))
+  const emoji = emojis.findKey(emoji => emoji === players.get(selected).icon)
+  let nextEmoji = emoji + 1
+  while (keys.includes(nextEmoji)) {
+    nextEmoji++
+  }
 
   return dispatch({
     type: GAME_PLAYER_CHANGE_COLOR,
-    data: { id: selected, color }
+    data: { id: selected, icon: emojis.get(nextEmoji) }
   })
 }
 

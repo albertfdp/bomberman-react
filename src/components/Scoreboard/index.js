@@ -11,9 +11,11 @@ const Score = ({ score }) => (
   </View>
 )
 
-const PlayerScore = ({ id, color, score }) => (
+const PlayerScore = ({ id, icon, score }) => (
   <View className={styles.playerScore}>
-    <View className={styles.player} style={{ backgroundColor: color }} />
+    <View className={styles.player}>
+      { icon }
+    </View>
     <Score score={score} />
   </View>
 )
@@ -23,7 +25,7 @@ const Scoreboard = ({ scores, paused }) => {
     <PlayerScore
       key={player.id}
       id={player.id}
-      color={player.color}
+      icon={player.icon}
       score={player.score}
     />
   ))

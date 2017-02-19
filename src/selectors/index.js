@@ -6,6 +6,6 @@ export const playerSelectors = createSelector(
   [ getPlayers ],
   (players) => ({
     ids: players.map(player => player.id),
-    scores: players.map(({ id, score, color }) => ({ id, score, color }))
+    scores: players.map(({ id, score, icon }) => ({ id, score, icon }))
   })
 )
