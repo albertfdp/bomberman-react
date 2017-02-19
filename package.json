@@ -9,6 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server --history-api-fallback",
     "build": "NODE_ENV=production webpack --progress",
+    "build:netlify": "NODE_ENV=production webpack",
     "lint": "standard",
     "test": "jest",
     "test:watch": "jest --watch",
