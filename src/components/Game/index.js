@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
+import classnames from 'classnames'
+import { connect } from 'react-redux'
 import { PauseMenu, Scoreboard, View } from 'components'
 import keycodes from 'keycodes'
 
 import styles from './styles.css'
+
+const Cell = ({ children, type }) => (
+  <View
+    className={classnames(styles.cell, styles[`type-${type}`])}>
+    { children }
+  </View>
+)
 
 class Game extends Component {
   constructor (props) {
@@ -33,6 +42,7 @@ class Game extends Component {
 
   render () {
     const { paused } = this.state
+    const { cells } = this.props
 
     return (
       <View
@@ -45,7 +55,13 @@ class Game extends Component {
           <Scoreboard paused={paused} />
         </View>
         <View className={styles.board}>
-          Board
+          <View className={styles.cells}>
+            { cells.valueSeq().map(cell => (
+              <Cell key={cell.id} type={cell.type}>
+                { cell.id }
+              </Cell>
+            )) }
+          </View>
         </View>
         <PauseMenu
           paused={paused}
@@ -56,4 +72,11 @@ class Game extends Component {
   }
 }
 
-export default Game
+const mapStateToProps = (state) => {
+  const { board: { cells } } = state
+
+  return {
+    cells
+  }
+}
+export default connect(mapStateToProps)(Game)

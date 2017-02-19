@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { playerSelectors } from 'selectors'
-import { CountDown, View } from 'components'
+import { Countdown, View } from 'components'
 
 import styles from './styles.css'
 
@@ -31,7 +31,7 @@ const Scoreboard = ({ scores, paused }) => {
   return (
     <View className={styles.container}>
       { playerScores.slice(0, 2) }
-      <CountDown paused={paused} />
+      <Countdown paused={paused} />
       { playerScores.slice(2, 4) }
     </View>
   )

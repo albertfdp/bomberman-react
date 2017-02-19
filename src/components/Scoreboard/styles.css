@@ -19,8 +19,8 @@
 }
 
 .player {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   margin-right: 20px;
 
   border: 3px solid var(--color-red);
@@ -28,11 +28,11 @@
 }
 
 .score {
-  font-size: 48px;
+  font-size: 36px;
 
   display: flex;
 
-  padding: 10px;
+  padding: 5px;
 
   text-align: center;
 

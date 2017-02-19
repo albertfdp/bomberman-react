@@ -15,6 +15,7 @@
 .topbar {
   display: flex;
   flex-direction: row;
+  max-height: 70px;
 
   margin: 5px;
 
@@ -27,6 +28,42 @@
 
 .board {
   display: flex;
+  padding: 5px;
 
-  flex: 5;
+  flex: 1;
+  justify-content: center;
+}
+
+.cells {
+  display: flex;
+
+  max-width: calc(var(--cell-width) * 16);
+
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-wrap: wrap;
+}
+
+.cell {
+  display: flex;
+
+  min-width: var(--cell-width);
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--color-tuna);
+
+  flex: 1;
+}
+
+.type-wall {
+  background-color: var(--color-cape-cod);
+}
+
+.type-block {
+  background-color: var(--color-tuna);
+}
+
+.type-free {
+  background-color: var(--color-green);
 }

@@ -15,4 +15,6 @@
   --color-orange: rgb(254, 177, 60);
   --color-gray: rgb(167, 167, 167);
   --color-green: rgb(67, 124, 67);
+
+  --cell-width: 80px;
 }
