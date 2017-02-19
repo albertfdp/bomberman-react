@@ -1,0 +1,25 @@
+@import "styles/variables.css";
+
+.container {
+  position: absolute;
+
+  width: calc((var(--cell-width) + 2) * 15);
+  height: calc((var(--cell-width) + 2) * 13);
+}
+
+.relative {
+  position: relative;
+
+  display: flex;
+
+  height: 100%;
+
+  flex: 1;
+}
+
+.icon {
+  font-size: 36px;
+
+  position: absolute;
+  z-index: 2;
+}

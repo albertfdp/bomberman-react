@@ -3,6 +3,7 @@ import { Player } from 'records'
 import emojisList from 'emojis-list'
 
 import {
+  BOMB_DROPED,
   GAME_START,
   GAME_PLAYER_CHANGE_COLOR,
   GAME_PLAYER_CHANGE_TYPE,
@@ -131,6 +132,16 @@ export const moveRight = () => (dispatch, getState) => {
       data: { id: 0, position: nextPosition }
     })
   }
+}
+
+export const dropBomb = () => (dispatch, getState) => {
+  const { positions } = getState()
+  const currentPosition = positions.get(0)
+
+  return dispatch({
+    type: BOMB_DROPED,
+    data: { position: currentPosition, timestamp: Date.now() }
+  })
 }
 
 export const selectPlayer = (id) => ({

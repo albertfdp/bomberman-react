@@ -15,9 +15,8 @@
 .topbar {
   display: flex;
   flex-direction: row;
-  max-height: 70px;
 
-  margin: 5px;
+  max-height: 70px;
 
   border: 3px solid var(--color-cape-cod);
   border-radius: 30px;
@@ -28,6 +27,7 @@
 
 .board {
   display: flex;
+
   padding: 5px;
 
   flex: 1;
@@ -37,7 +37,7 @@
 .cells {
   display: flex;
 
-  max-width: calc(var(--cell-width) * 16);
+  width: calc((var(--cell-width) + 2) * 15);
 
   flex-grow: 0;
   flex-shrink: 1;
@@ -47,15 +47,16 @@
 .cell {
   display: flex;
 
+  width: var(--cell-width);
+  height: var(--cell-width);
+
+  border: 1px solid var(--color-tuna);
+
+  align-items: center;
   flex-basis: auto;
   flex-grow: 0;
   flex-shrink: 0;
-  height: 60px;
-  min-width: var(--cell-width);
-  align-items: center;
   justify-content: center;
-
-  border: 1px solid var(--color-tuna);
 }
 
 .type-wall {
@@ -68,8 +69,4 @@
 
 .type-free {
   background-color: var(--color-green);
-}
-
-.icon {
-  font-size: 36px;
 }

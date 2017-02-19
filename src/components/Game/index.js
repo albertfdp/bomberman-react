@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router-dom'
-import { PauseMenu, Scoreboard, Text, View } from 'components'
+import { PauseMenu, Scoreboard, Text, VirtualBoard, View } from 'components'
 import keycodes from 'keycodes'
 
 import * as GameActions from 'actions/GameActions'
@@ -13,9 +13,11 @@ import styles from './styles.css'
 const Cell = ({ type, player }) => (
   <View
     className={classnames(styles.cell, styles[`type-${type}`])}>
-    <Text className={styles.icon}>
-      { player && player.icon }
-    </Text>
+    {
+      (type === 'bomb')
+        ? <Text className={styles.object}>💣</Text>
+        : null
+    }
   </View>
 )
 
@@ -49,6 +51,8 @@ class Game extends Component {
         return gameActions.moveLeft()
       case keycodes('right'):
         return gameActions.moveRight()
+      case keycodes('a'):
+        return gameActions.dropBomb()
       default:
         return
     }
@@ -60,7 +64,7 @@ class Game extends Component {
 
   render () {
     const { paused } = this.state
-    const { cells, positions, occupied, players } = this.props
+    const { cells } = this.props
 
     return (
       <View
@@ -78,9 +82,9 @@ class Game extends Component {
               <Cell
                 key={cell.id}
                 type={cell.type}
-                player={occupied.includes(cell.id) && players.get(positions.findKey(pos => pos === cell.id))}
               />
             )) }
+            <VirtualBoard />
           </View>
         </View>
         <PauseMenu
@@ -93,13 +97,10 @@ class Game extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { board: { cells }, positions, players } = state
+  const { board: { cells } } = state
 
   return {
-    cells,
-    positions,
-    occupied: positions.valueSeq(),
-    players
+    cells
   }
 }
 
