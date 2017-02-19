@@ -1,4 +1,6 @@
-# bomberman
+# [WIP] bomberman
+
+**WORK IN PROGRESS**
 
 A poor-man implementation of the classic Bomberman in React. Just for fun. The game is offline capable.
 
