@@ -27,12 +27,6 @@ class Welcome extends Component {
     router: PropTypes.object.isRequired
   }
 
-  componentWillMount () {
-    const { gameActions } = this.props
-
-    gameActions.start()
-  }
-
   componentDidMount () {
     this.node.focus()
   }
@@ -55,16 +49,20 @@ class Welcome extends Component {
   onKeyDown = (e) => {
     const { gameActions, push } = this.props
 
-    if (e.keyCode === keycode('up')) {
-      gameActions.previousPlayer()
-    } else if (e.keyCode === keycode('down')) {
-      gameActions.nextPlayer()
-    } else if (e.keyCode === keycode('left') || e.keyCode === keycode('right')) {
-      gameActions.changeType()
-    } else if (e.keyCode === keycode('c')) {
-      gameActions.changeColor()
-    } else if (e.keyCode === keycode('enter')) {
-      push('/game')
+    switch (e.keyCode) {
+      case keycode('up'):
+        return gameActions.previousPlayer()
+      case keycode('down'):
+        return gameActions.nextPlayer()
+      case keycode('left'):
+      case keycode('right'):
+        return gameActions.changeType()
+      case keycode('c'):
+        return gameActions.changeColor()
+      case keycode('enter'):
+        return push('/game')
+      default:
+        break
     }
   }
 

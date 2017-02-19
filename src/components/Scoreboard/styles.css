@@ -1,0 +1,47 @@
+@import "styles/variables.css";
+
+.container {
+  display: flex;
+
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.playerScore {
+  display: flex;
+
+  height: 100%;
+
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.player {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+
+  border: 3px solid var(--color-red);
+  border-radius: 25%;
+}
+
+.score {
+  font-size: 48px;
+
+  display: flex;
+
+  padding: 10px;
+
+  text-align: center;
+
+  color: var(--color-white);
+  border: 3px solid var(--color-red);
+  border-radius: 5px;
+  background-color: var(--color-tuna);
+
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}

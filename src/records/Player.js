@@ -5,7 +5,8 @@ class Player extends Record({
   name: '',
   type: undefined,
   color: undefined,
-  selected: false
+  selected: false,
+  score: 0
 }) { }
 
 export default Player

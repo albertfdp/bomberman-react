@@ -1,0 +1,17 @@
+@import "styles/variables.css";
+
+.countdown {
+  width: 180px;
+  padding: 10px;
+
+  text-align: center;
+
+  border-radius: 5px;
+  background-color: var(--color-tuna);
+}
+
+.time {
+  font-size: 64px;
+
+  color: var(--color-white);
+}
