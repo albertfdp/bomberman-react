@@ -1,4 +1,6 @@
 export const GAME_PLAYER_CHANGE_TYPE = Symbol('GAME_PLAYER_CHANGE_TYPE')
 export const GAME_PLAYER_CHANGE_COLOR = Symbol('GAME_PLAYER_CHANGE_COLOR')
 export const GAME_PLAYER_SELECTED = Symbol('GAME_PLAYER_SELECTED')
-export const GAME_STARTED = Symbol('GAME_STARTED')
+export const GAME_INIT = Symbol('GAME_INIT')
+export const GAME_START = Symbol('GAME_START')
+export const PLAYER_MOVE = Symbol('PLAYER_MOVE')

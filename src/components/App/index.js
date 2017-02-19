@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Game, Welcome, View } from 'components'
 
-import { start } from 'actions/GameActions'
+import { init } from 'actions/GameActions'
 
 import styles from './styles.css'
 
@@ -11,7 +11,7 @@ class App extends Component {
   componentWillMount () {
     const { dispatch } = this.props
 
-    dispatch(start())
+    dispatch(init())
   }
 
   render () {

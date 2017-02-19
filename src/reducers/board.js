@@ -1,11 +1,11 @@
 import { Board } from 'records'
 import {
-  GAME_STARTED
+  GAME_INIT
 } from 'constants/actions'
 
 const board = (state = new Board(), action) => {
   switch (action.type) {
-    case GAME_STARTED:
+    case GAME_INIT:
       return Board.create()
     default:
       return state

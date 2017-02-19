@@ -1,6 +1,6 @@
 import {
   GAME_PLAYER_SELECTED,
-  GAME_STARTED
+  GAME_INIT
 } from 'constants/actions'
 
 const welcome = (state = {}, action) => {
@@ -10,7 +10,7 @@ const welcome = (state = {}, action) => {
         ...state,
         selected: action.data.id
       }
-    case GAME_STARTED:
+    case GAME_INIT:
       return {
         ...state,
         selected: 0

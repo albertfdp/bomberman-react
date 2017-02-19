@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
-import { PauseMenu, Scoreboard, View } from 'components'
+import { bindActionCreators } from 'redux'
+import { PauseMenu, Scoreboard, Text, View } from 'components'
 import keycodes from 'keycodes'
+
+import * as GameActions from 'actions/GameActions'
 
 import styles from './styles.css'
 
-const Cell = ({ children, type }) => (
+const Cell = ({ type, player }) => (
   <View
     className={classnames(styles.cell, styles[`type-${type}`])}>
-    { children }
+    <Text className={styles.icon}>
+      { player && player.icon }
+    </Text>
   </View>
 )
 
@@ -23,14 +28,27 @@ class Game extends Component {
   }
 
   componentDidMount () {
+    const { gameActions } = this.props
+
     this.node.focus()
+    gameActions.startGame()
   }
 
   onKeyDown = (e) => {
+    const { gameActions } = this.props
+
     switch (e.keyCode) {
       case keycodes('esc'):
         this.setState(prevState => ({ paused: !prevState.paused }))
         break
+      case keycodes('up'):
+        return gameActions.moveUp()
+      case keycodes('down'):
+        return gameActions.moveDown()
+      case keycodes('left'):
+        return gameActions.moveLeft()
+      case keycodes('right'):
+        return gameActions.moveRight()
       default:
         return
     }
@@ -42,7 +60,7 @@ class Game extends Component {
 
   render () {
     const { paused } = this.state
-    const { cells } = this.props
+    const { cells, positions, occupied, players } = this.props
 
     return (
       <View
@@ -57,9 +75,11 @@ class Game extends Component {
         <View className={styles.board}>
           <View className={styles.cells}>
             { cells.valueSeq().map(cell => (
-              <Cell key={cell.id} type={cell.type}>
-                { cell.id }
-              </Cell>
+              <Cell
+                key={cell.id}
+                type={cell.type}
+                player={occupied.includes(cell.id) && players.get(positions.findKey(pos => pos === cell.id))}
+              />
             )) }
           </View>
         </View>
@@ -73,10 +93,18 @@ class Game extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { board: { cells } } = state
+  const { board: { cells }, positions, players } = state
 
   return {
-    cells
+    cells,
+    positions,
+    occupied: positions.valueSeq(),
+    players
   }
 }
-export default connect(mapStateToProps)(Game)
+
+const mapDispatchToProps = dispatch => ({
+  gameActions: bindActionCreators(GameActions, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game)

@@ -47,13 +47,15 @@
 .cell {
   display: flex;
 
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 60px;
   min-width: var(--cell-width);
   align-items: center;
   justify-content: center;
 
   border: 1px solid var(--color-tuna);
-
-  flex: 1;
 }
 
 .type-wall {
@@ -66,4 +68,8 @@
 
 .type-free {
   background-color: var(--color-green);
+}
+
+.icon {
+  font-size: 36px;
 }
