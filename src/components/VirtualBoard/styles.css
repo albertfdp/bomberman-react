@@ -17,9 +17,19 @@
   flex: 1;
 }
 
-.icon {
-  font-size: 36px;
-
+.player {
   position: absolute;
   z-index: 2;
+
+  display: flex;
+
+  width: var(--cell-width);
+  height: var(--cell-width);
+
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 36px;
 }

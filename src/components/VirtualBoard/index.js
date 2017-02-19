@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'components'
+import { Text, View } from 'components'
 import { connect } from 'react-redux'
 
 import styles from './styles.css'
@@ -11,15 +11,17 @@ const getStyleFromPosition = (position) => {
   const WIDTH = 62
   const CELLS_PER_ROW = 15
 
-  const top = (Math.floor(position / CELLS_PER_ROW) * HEIGHT) + ((HEIGHT / 4) - 2)
-  const left = ((Math.floor(position % CELLS_PER_ROW)) * WIDTH) + ((WIDTH / 4) - 2)
+  const top = (Math.floor(position / CELLS_PER_ROW) * HEIGHT)
+  const left = ((Math.floor(position % CELLS_PER_ROW)) * WIDTH)
 
   return { top, left }
 }
 
 const VirtualPlayer = ({ id, icon, position }) => (
-  <View className={styles.icon} style={getStyleFromPosition(position)}>
-    { icon }
+  <View className={styles.player} style={getStyleFromPosition(position)}>
+    <Text className={styles.icon}>
+      { icon }
+    </Text>
   </View>
 )
 
