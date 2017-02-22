@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
 import { Text, View } from 'components'
 import { connect } from 'react-redux'
+import { CELL_HEIGHT, CELL_WIDTH } from 'constants'
 
 import styles from './styles.css'
 
 const getStyleFromPosition = (position) => {
   if (!position) { return {} }
+  const [ row, column ] = position.split('-')
 
-  const HEIGHT = 62
-  const WIDTH = 62
-  const CELLS_PER_ROW = 15
-
-  const top = (Math.floor(position / CELLS_PER_ROW) * HEIGHT)
-  const left = ((Math.floor(position % CELLS_PER_ROW)) * WIDTH)
-
-  return { top, left }
+  return {
+    top: Math.floor(row * CELL_HEIGHT),
+    left: Math.floor(column * CELL_WIDTH)
+  }
 }
 
 const VirtualPlayer = ({ id, icon, position }) => (

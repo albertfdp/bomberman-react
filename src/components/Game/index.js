@@ -10,13 +10,13 @@ import * as GameActions from 'actions/GameActions'
 
 import styles from './styles.css'
 
-const Cell = ({ type, player }) => (
+const Cell = ({ id, type }) => (
   <View
     className={classnames(styles.cell, styles[`type-${type}`])}>
     {
       (type === 'bomb')
         ? <Text className={styles.object}>💣</Text>
-        : null
+        : __DEV__ ? <Text>{ id }</Text> : null
     }
   </View>
 )
@@ -81,6 +81,7 @@ class Game extends Component {
             { cells.valueSeq().map(cell => (
               <Cell
                 key={cell.id}
+                id={cell.id}
                 type={cell.type}
               />
             )) }
@@ -96,13 +97,7 @@ class Game extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { board: { cells } } = state
-
-  return {
-    cells
-  }
-}
+const mapStateToProps = ({ cells }) => ({ cells })
 
 const mapDispatchToProps = dispatch => ({
   gameActions: bindActionCreators(GameActions, dispatch)

@@ -1,6 +1,8 @@
 import { List } from 'immutable'
-import { Player } from 'records'
+import { Cell, Player } from 'records'
 import emojisList from 'emojis-list'
+
+import { ROWS, COLUMNS } from 'constants'
 
 import {
   BOMB_DROPED,
@@ -12,6 +14,8 @@ import {
   PLAYER_MOVE
 } from 'constants/actions'
 
+const freeCells = [ '1-1', '2-1', '10-1', '11-1', '1-2', '11-2', '1-12', '1-13', '2-13', '10-13', '11-12', '11-13' ]
+
 export const init = () => {
   const emojis = new List(emojisList)
 
@@ -22,15 +26,26 @@ export const init = () => {
     new Player({ id: 3, name: 'Player 4', type: 'com', icon: '👹' })
   ])
 
+  const cells = []
+
+  for (let row = 0; row < ROWS; row++) {
+    for (let column = 0; column < COLUMNS; column++) {
+      const type = ((column === 0 || column === (COLUMNS - 1) || row === 0 || row === (ROWS - 1)) || ((column % 2 === 0) && (row % 2 === 0)))
+        ? 'wall'
+        : freeCells.includes(`${row}-${column}`) ? 'free' : 'block'
+      cells.push(new Cell({ column, row, type }))
+    }
+  }
+
   return {
     type: GAME_INIT,
-    data: { players, emojis }
+    data: { players, emojis, cells }
   }
 }
 
 export const startGame = () => (dispatch, getState) => {
   const { players } = getState()
-  const initialPositions = [ 16, 28, 166, 178 ]
+  const initialPositions = [ '1-1', '11-1', '1-13', '11-13' ]
 
   const positions = players.map(player => (
     [ player.id, initialPositions[player.id] ]
@@ -80,14 +95,12 @@ export const nextPlayer = () => (dispatch, getState) => {
   return dispatch(selectPlayer(next))
 }
 
-const ROW_LENGTH = 15
-
 export const moveUp = () => (dispatch, getState) => {
-  const { board, positions } = getState()
+  const { cells, positions } = getState()
   const currentPosition = positions.get(0)
-  const nextPosition = currentPosition - ROW_LENGTH
+  const nextPosition = cells.get(currentPosition).getNorth()
 
-  if (board.cells.get(nextPosition) && board.cells.get(nextPosition).get('type', null) === 'free') {
+  if (cells.get(nextPosition) && cells.get(nextPosition).get('type', null) === 'free') {
     return dispatch({
       type: PLAYER_MOVE,
       data: { id: 0, position: nextPosition }
@@ -96,11 +109,11 @@ export const moveUp = () => (dispatch, getState) => {
 }
 
 export const moveDown = () => (dispatch, getState) => {
-  const { board, positions } = getState()
+  const { cells, positions } = getState()
   const currentPosition = positions.get(0)
-  const nextPosition = currentPosition + ROW_LENGTH
+  const nextPosition = cells.get(currentPosition).getSouth()
 
-  if (board.cells.get(nextPosition) && board.cells.get(nextPosition).get('type', null) === 'free') {
+  if (cells.get(nextPosition) && cells.get(nextPosition).get('type', null) === 'free') {
     return dispatch({
       type: PLAYER_MOVE,
       data: { id: 0, position: nextPosition }
@@ -109,11 +122,11 @@ export const moveDown = () => (dispatch, getState) => {
 }
 
 export const moveLeft = () => (dispatch, getState) => {
-  const { board, positions } = getState()
+  const { cells, positions } = getState()
   const currentPosition = positions.get(0)
-  const nextPosition = currentPosition - 1
+  const nextPosition = cells.get(currentPosition).getWest()
 
-  if (board.cells.get(nextPosition) && board.cells.get(nextPosition).get('type', null) === 'free') {
+  if (cells.get(nextPosition) && cells.get(nextPosition).get('type', null) === 'free') {
     return dispatch({
       type: PLAYER_MOVE,
       data: { id: 0, position: nextPosition }
@@ -122,11 +135,11 @@ export const moveLeft = () => (dispatch, getState) => {
 }
 
 export const moveRight = () => (dispatch, getState) => {
-  const { board, positions } = getState()
+  const { cells, positions } = getState()
   const currentPosition = positions.get(0)
-  const nextPosition = currentPosition + 1
+  const nextPosition = cells.get(currentPosition).getEast()
 
-  if (board.cells.get(nextPosition) && board.cells.get(nextPosition).get('type', null) === 'free') {
+  if (cells.get(nextPosition) && cells.get(nextPosition).get('type', null) === 'free') {
     return dispatch({
       type: PLAYER_MOVE,
       data: { id: 0, position: nextPosition }

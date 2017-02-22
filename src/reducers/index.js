@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux'
 
-import board from './board'
+import cells from './cells'
 import positions from './positions'
 import players from './players'
 import emojis from './emojis'
 import welcome from './welcome'
 
 export default combineReducers({
-  board,
+  cells,
   emojis,
   positions,
   players,
