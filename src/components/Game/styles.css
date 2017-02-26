@@ -30,6 +30,7 @@
 
   padding: 5px;
 
+  align-items: center;
   flex: 1;
   justify-content: center;
 }
@@ -38,6 +39,7 @@
   display: flex;
 
   width: calc((var(--cell-width) + 2) * 15);
+  max-height: calc((var(--cell-width) + 2) * 13);
 
   flex-grow: 0;
   flex-shrink: 1;
