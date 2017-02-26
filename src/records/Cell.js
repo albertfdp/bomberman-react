@@ -16,7 +16,7 @@ class Cell extends Record({
   }
 
   getSouth () {
-    if (this.row === (ROWS - 1)) { return null }
+    if (this.row === ROWS) { return null }
     return `${this.row + 1}-${this.column}`
   }
 
@@ -26,8 +26,12 @@ class Cell extends Record({
   }
 
   getEast () {
-    if (this.column === (COLUMNS - 1)) { return null }
+    if (this.column === COLUMNS) { return null }
     return `${this.row}-${this.column + 1}`
+  }
+
+  getNeighbours () {
+    return [ this.getNorth(), this.getSouth(), this.getWest(), this.getEast() ]
   }
 }
 

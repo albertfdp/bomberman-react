@@ -7,7 +7,7 @@ import { init } from 'actions/GameActions'
 
 import styles from './styles.css'
 
-class App extends Component {
+export class App extends Component {
   componentWillMount () {
     const { dispatch } = this.props
 

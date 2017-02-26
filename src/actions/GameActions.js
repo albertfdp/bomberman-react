@@ -1,11 +1,13 @@
-import { List } from 'immutable'
-import { Cell, Player } from 'records'
+import { List, Set } from 'immutable'
+import { Bomb, Cell, Player } from 'records'
 import emojisList from 'emojis-list'
 
-import { ROWS, COLUMNS } from 'constants'
+import { ROWS, COLUMNS, BOMB_TIMEOUT } from 'constants'
 
 import {
   BOMB_DROPED,
+  BOMB_EXPLODED,
+  BOMB_AFTER_BLAST,
   GAME_START,
   GAME_PLAYER_CHANGE_COLOR,
   GAME_PLAYER_CHANGE_TYPE,
@@ -147,13 +149,71 @@ export const moveRight = () => (dispatch, getState) => {
   }
 }
 
+export const afterBlast = (cells) => ({
+  type: BOMB_AFTER_BLAST,
+  data: { cells }
+})
+
+export const getBlast = (exploted, bombs) => {
+  const blastCells = exploted.blast.map(c => c.id)
+  let blast = new Set(exploted.blast)
+
+  blastCells.forEach(cell => {
+    if (cell !== exploted.position && bombs.has(cell)) {
+      const newBlast = getBlast(bombs.get(cell), bombs.remove(exploted.position))
+      blast = blast.concat(newBlast)
+    }
+  })
+
+  return blast
+}
+
+export const explode = (bomb) => (dispatch, getState) => {
+  const { bombs, positions } = getState()
+
+  if (!bombs.has(bomb.position)) { return }
+
+  const blast = getBlast(bomb, bombs)
+  const blastCells = blast.map(b => b.id)
+
+  const explodedBombs = bombs.filter(bomb => (
+    blastCells.includes(bomb.position)
+  ))
+
+  const players = blast.find(cell => (
+    positions.includes(cell)
+  )) || new List()
+
+  setTimeout(() => {
+    dispatch(afterBlast(blast))
+  }, 500)
+
+  return dispatch({
+    type: BOMB_EXPLODED,
+    data: { bombs: explodedBombs, blast, players }
+  })
+}
+
 export const dropBomb = () => (dispatch, getState) => {
-  const { positions } = getState()
-  const currentPosition = positions.get(0)
+  const { cells, positions } = getState()
+  const currentPosition = cells.get(positions.get(0))
+
+  const blast = currentPosition.getNeighbours()
+    .map(n => cells.get(n))
+    .concat(currentPosition)
+    .filter(cell => cell.type !== 'wall')
+
+  const bomb = new Bomb({
+    position: currentPosition.id,
+    blast,
+    timestamp: Date.now()
+  })
+
+  setTimeout(() => dispatch(explode(bomb)), BOMB_TIMEOUT)
 
   return dispatch({
     type: BOMB_DROPED,
-    data: { position: currentPosition, timestamp: Date.now() }
+    data: { bomb }
   })
 }
 

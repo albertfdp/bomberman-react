@@ -10,14 +10,21 @@ import * as GameActions from 'actions/GameActions'
 
 import styles from './styles.css'
 
+const getCellType = (id, type) => {
+  switch (type) {
+    case 'bomb':
+      return <Text className={styles.object}>💣</Text>
+    case 'blast':
+      return <Text className={styles.object}>💥</Text>
+    default:
+      return __DEV__ ? <Text>{ id }</Text> : null
+  }
+}
+
 const Cell = ({ id, type }) => (
   <View
     className={classnames(styles.cell, styles[`type-${type}`])}>
-    {
-      (type === 'bomb')
-        ? <Text className={styles.object}>💣</Text>
-        : __DEV__ ? <Text>{ id }</Text> : null
-    }
+    { getCellType(id, type) }
   </View>
 )
 

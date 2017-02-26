@@ -70,3 +70,7 @@
 .type-free {
   background-color: var(--color-green);
 }
+
+.type-blast {
+  background-color: var(--color-red);
+}
